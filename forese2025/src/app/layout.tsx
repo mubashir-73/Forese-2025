@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Hanken_Grotesk } from "next/font/google";
+import Nav from "./component/nav";
+
+const hankenGrotesk = Hanken_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // specify weights you need
+  style: ["normal", "italic"],
+  variable: "--font-hanken-grotesk", // CSS variable name
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,8 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${hankenGrotesk.variable} antialiased font-hanken`}
       >
+        <Nav />
         {children}
       </body>
     </html>
