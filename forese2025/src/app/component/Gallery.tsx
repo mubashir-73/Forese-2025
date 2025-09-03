@@ -22,7 +22,7 @@ export default function Gallery() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#004aad]">
+      <div className="min-h-screen">
         <div className="flex p-30 justify-center text-white">
           <h1 className="text-6xl">Gallery</h1>
         </div>
