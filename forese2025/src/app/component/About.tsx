@@ -1,7 +1,6 @@
 import CountUp from "../../components/ui/CountUp";
 import RotatingText from "../../components/ui/RotatingText";
 
-import DecryptedText from "../../components/ui/DecryptText";
 import Carousel from "../../components/ui/Carousel";
 import { FaUserPlus } from "react-icons/fa";
 import { RiSpeakFill } from "react-icons/ri";

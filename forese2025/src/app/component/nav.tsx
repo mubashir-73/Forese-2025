@@ -13,7 +13,7 @@ export default function Nav() {
 
         <div className="hidden md:flex gap-6 text-white font-light tracking-tight mr-10 items-center">
           <Link href="/Coderforum">
-            <p>CODERS' FORUM</p>
+            <p>CODERS FORUM</p>
           </Link>
           <p>EVENTS</p>
           <Link href="/Team">
