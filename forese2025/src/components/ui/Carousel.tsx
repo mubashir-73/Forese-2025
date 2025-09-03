@@ -1,6 +1,13 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { motion, PanInfo, useMotionValue, useTransform } from "motion/react";
+import {
+  MotionValue,
+  motion,
+  PanInfo,
+  useMotionValue,
+  useTransform,
+  Transition,
+} from "motion/react";
 import React, { JSX } from "react";
 
 // replace icons with your own if needed
@@ -64,7 +71,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
-const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 };
+const SPRING_OPTIONS = { type: "spring" as const, stiffness: 300, damping: 30 };
 
 export default function Carousel({
   items = DEFAULT_ITEMS,
@@ -196,41 +203,17 @@ export default function Carousel({
         onAnimationComplete={handleAnimationComplete}
       >
         {carouselItems.map((item, index) => {
-          const range = [
-            -(index + 1) * trackItemOffset,
-            -index * trackItemOffset,
-            -(index - 1) * trackItemOffset,
-          ];
-          const outputRange = [90, 0, -90];
-          const rotateY = useTransform(x, range, outputRange, { clamp: false });
           return (
-            <motion.div
+            <CarouselItem
               key={index}
-              className={`relative shrink-0 flex flex-col ${
-                round
-                  ? "items-center justify-center text-center bg-[#060010] border-0"
-                  : "items-start justify-between bg-[#222] border border-[#222] rounded-[12px]"
-              } overflow-hidden cursor-grab active:cursor-grabbing`}
-              style={{
-                width: itemWidth,
-                height: round ? itemWidth : "100%",
-                rotateY: rotateY,
-                ...(round && { borderRadius: "50%" }),
-              }}
-              transition={effectiveTransition}
-            >
-              <div className={`${round ? "p-0 m-0" : "mb-4 p-5"}`}>
-                <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]">
-                  {item.icon}
-                </span>
-              </div>
-              <div className="p-5">
-                <div className="mb-1 font-black text-lg text-white">
-                  {item.title}
-                </div>
-                <p className="text-sm text-white">{item.description}</p>
-              </div>
-            </motion.div>
+              item={item}
+              index={index}
+              itemWidth={itemWidth}
+              trackItemOffset={trackItemOffset}
+              x={x}
+              round={round}
+              effectiveTransition={effectiveTransition}
+            />
           );
         })}
       </motion.div>
@@ -260,5 +243,60 @@ export default function Carousel({
         </div>
       </div>
     </div>
+  );
+}
+
+interface CarouselItemProps {
+  item: CarouselItem;
+  index: number;
+  itemWidth: number;
+  trackItemOffset: number;
+  x: MotionValue<number>;
+  round: boolean;
+  effectiveTransition: Transition;
+}
+
+function CarouselItem({
+  item,
+  index,
+  itemWidth,
+  trackItemOffset,
+  x,
+  round,
+  effectiveTransition,
+}: CarouselItemProps) {
+  const range = [
+    -(index + 1) * trackItemOffset,
+    -index * trackItemOffset,
+    -(index - 1) * trackItemOffset,
+  ];
+  const outputRange = [90, 0, -90];
+  const rotateY = useTransform(x, range, outputRange, { clamp: false });
+
+  return (
+    <motion.div
+      className={`relative shrink-0 flex flex-col ${
+        round
+          ? "items-center justify-center text-center bg-[#060010] border-0"
+          : "items-start justify-between bg-[#222] border border-[#222] rounded-[12px]"
+      } overflow-hidden cursor-grab active:cursor-grabbing`}
+      style={{
+        width: itemWidth,
+        height: round ? itemWidth : "100%",
+        rotateY: rotateY,
+        ...(round && { borderRadius: "50%" }),
+      }}
+      transition={effectiveTransition}
+    >
+      <div className={`${round ? "p-0 m-0" : "mb-4 p-5"}`}>
+        <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]">
+          {item.icon}
+        </span>
+      </div>
+      <div className="p-5">
+        <div className="mb-1 font-black text-lg text-white">{item.title}</div>
+        <p className="text-sm text-white">{item.description}</p>
+      </div>
+    </motion.div>
   );
 }

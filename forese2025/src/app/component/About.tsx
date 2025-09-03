@@ -51,8 +51,8 @@ export default function About() {
   ];
 
   return (
-    <div className="min-w-screen bg-[#004aad] p-8 ">
-      <div className="flex flex-col md:flex-row w-screen h-screen p-10 pt-60 pr-10">
+    <div className="min-w-screen bg-[#004aad] sm:p-2 md:p-8 ">
+      <div className="flex flex-col md:flex-row w-screen h-screen p-10 pt-25 md:pt-60 pr-10">
         <div className="flex flex-col text-white text-2xl md:text-6xl md:w-[800px]">
           <div className="w-30 ">
             <div className=" text-sm inline-flex mb-4 border border-white px-3 py-1 rounded-lg tracking-tight w-[20px];">
