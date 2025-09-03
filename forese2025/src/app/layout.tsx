@@ -7,7 +7,6 @@ import Nav from "./component/nav";
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"], // specify weights you need
-  style: ["normal", "italic"],
   variable: "--font-hanken-grotesk", // CSS variable name
 });
 
@@ -34,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${hankenGrotesk.variable} antialiased font-hanken`}
+        className={`${geistSans.variable} ${geistMono.variable} ${hankenGrotesk.variable} antialiased`}
       >
         <Nav />
         {children}

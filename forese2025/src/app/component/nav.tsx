@@ -17,7 +17,7 @@ export default function Nav() {
         <div>
           <Image src="/FOR.png" alt="logo" width={125} height={110} />
         </div>
-        <div className="flex gap-6 text-white font-light tracking-tight mr-10 items-center">
+        <div className="hidden md:flex gap-6 text-white font-light tracking-tight mr-10 items-center">
           <p>ABOUT</p>
           <p>EVENTS</p>
           <p>TEAM</p>
