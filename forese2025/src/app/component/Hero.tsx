@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import TextType from "@/components/ui/TextType";
 
@@ -9,12 +9,27 @@ export default function Hero() {
     <>
       {/* Scrollable Content Layer */}
       {/* Hero Section */}
-      <div className="h-screen flex flex-col text-3xl md:text-6xl lg:text-8xl justify-center items-center">
+      <div className="h-screen flex flex-col font-hanken text-3xl md:text-6xl lg:text-8xl justify-center items-center">
         <span className="inline-flex">
-          <h1 className="text-white italic">FOR </h1>
-          <h1 className="text-white">um for Economic Studies</h1>
+          <h1
+            className="text-white italic"
+            style={{ fontFamily: "var(--font-hanken-grotesk)" }}
+          >
+            FOR{" "}
+          </h1>
+          <h1
+            className="text-white"
+            style={{ fontFamily: "var(--font-hanken-grotesk)" }}
+          >
+            um for Economic Studies
+          </h1>
         </span>
-        <h1 className="text-white">By Engineers</h1>
+        <h1
+          className="text-white"
+          style={{ fontFamily: "var(--font-hanken-grotesk)" }}
+        >
+          By Engineers
+        </h1>
         <TextType
           text={[
             "A student-run club",
@@ -27,12 +42,14 @@ export default function Hero() {
           cursorCharacter="|"
           className="text-white text-xl mt-5"
         />
-        <button className="bg-white text-xl font-medium text-blue-800 rounded-md px-4 py-2 mt-10 hover:bg-blue-800 hover:text-white tracking-tight transition-colors duration-200">
-          <span className="inline-flex items-center">
-            Know the team
-            <MdArrowOutward className="ml-2" />
-          </span>
-        </button>
+        <Link href="/Team">
+          <button className="bg-white text-xl font-medium text-blue-800 rounded-md px-4 py-2 mt-10 hover:bg-blue-800 hover:text-white tracking-tight transition-colors duration-200">
+            <span className="inline-flex items-center">
+              Know the team
+              <MdArrowOutward className="ml-2" />
+            </span>
+          </button>
+        </Link>
       </div>
 
       {/* Next Section - This will scroll over the fixed background */}
