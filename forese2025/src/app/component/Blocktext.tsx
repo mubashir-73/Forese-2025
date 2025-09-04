@@ -9,8 +9,8 @@ export const Example = () => {
         tag="/ Support"
         text={
           <>
-            <strong>Have questions?</strong> We'd love to help! Contact support
-            for any issue you may face.
+            <strong>Have questions?</strong> We would love to help! Contact
+            support for any issue you may face.
           </>
         }
         examples={[

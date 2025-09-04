@@ -5,7 +5,7 @@ export default function Aboutcf() {
         className="text-white text-3xl md:text-6xl font-semibold "
         style={{ fontFamily: "var(--font-poppins)" }}
       >
-        CODERS'FORUM
+        CODERS FORUM
       </h1>
     </div>
   );
