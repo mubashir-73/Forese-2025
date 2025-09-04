@@ -94,15 +94,15 @@ export default function StickyScroll() {
       </div>
 
       {/* Black Section */}
-      <div className="h-screen w-full flex-col justify-center items-center bg-[#0d5c63] sticky top-0 z-20 pt-30 gap-7">
-        <div className=" flex justify-center ">
+      <div className=" flex h-screen w-full flex-col justify-center items-center bg-[#0d5c63] sticky top-0 z-20 pt-30 gap-7">
+        <div className=" flex justify-center items-center">
           <div className=" text-sm inline-flex text-white mb-4 border border-white px-3 py-1 rounded-lg tracking-tight w-[20px];">
             {" "}
             What we do?
           </div>
         </div>
         <div
-          className="flex justify-center font-semibold items-center text-white text-3xl  md:text-7xl"
+          className="flex justify-center items-center font-semibold items-center text-white text-3xl  md:text-7xl"
           style={{ fontFamily: "var(--font-poppins)" }}
         >
           <div>
@@ -145,7 +145,7 @@ export default function StickyScroll() {
       </div>
 
       {/* Blue Section */}
-      <div className="h-screen w-full flex flex-col items-center bg-[#0b3954] sticky top-0 pt-30 z-30 gap-7">
+      <div className="h-screen w-full flex flex-col justify-center items-center bg-[#0b3954] sticky top-0 pt-30 z-30 gap-7">
         <div className="flex justify-center text-center">
           <AiOutlineRise className="text-white h-30 w-30" />
         </div>
