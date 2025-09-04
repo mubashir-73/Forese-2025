@@ -12,7 +12,7 @@ export default function Hero() {
       <div className="h-screen flex flex-col font-hanken text-3xl md:text-6xl lg:text-8xl justify-center items-center">
         <span className="inline-flex">
           <h1
-            className="text-white italic"
+            className="text-white"
             style={{ fontFamily: "var(--font-hanken-grotesk)" }}
           >
             FOR{" "}

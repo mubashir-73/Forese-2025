@@ -22,7 +22,7 @@ export default function Nav() {
             <p>TEAM</p>
           </Link>
           <button className="bg-white text-black rounded-md px-4 py-2 font-light">
-            CONTACT US
+            SUBMIT RESUME
           </button>
         </div>
       </div>

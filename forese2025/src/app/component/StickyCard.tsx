@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { FaPhone } from "react-icons/fa6";
 import CountUp from "../../components/ui/CountUp";
 import Image from "next/image";
 import Carousel from "../../components/ui/Carousel";
@@ -8,6 +10,7 @@ import { GiAwareness } from "react-icons/gi";
 import { IoIosTrendingUp } from "react-icons/io";
 import { AiOutlineRise } from "react-icons/ai";
 import RotatingText from "../../components/ui/RotatingText";
+import BlockInTextCard from "./Blocktext";
 
 export default function StickyScroll() {
   const items: Array<{
@@ -137,19 +140,26 @@ export default function StickyScroll() {
           </p>
         </div>
         <div className="flex justify-center mt-5">
-          <button className="bg-green-950 text-green-400 border border-green-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
-            <span className="bg-green-400 shadow-green-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-            Go to Events
-          </button>{" "}
+          <Link href="/Event">
+            <button className="bg-green-950 text-green-400 border border-green-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
+              <span className="bg-green-400 shadow-green-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+              Go to Events
+            </button>{" "}
+          </Link>
         </div>
       </div>
 
       {/* Blue Section */}
-      <div className="h-screen w-full flex flex-col justify-center items-center bg-[#0b3954] sticky top-0 pt-30 z-30 gap-7">
+      <div className="h-screen w-full flex flex-col justify-center items-center bg-[#0b3954] sticky top-0 pt-30 z-30 gap-10">
         <div className="flex justify-center text-center">
           <AiOutlineRise className="text-white h-30 w-30" />
         </div>
-        <div className="flex w-full gap-10 items-center justify-center">
+        <div className="flex justify-center text-center">
+          <h1 className="text-white text-4xl text-center md:text-7xl">
+            Largest HR–student engagement ever
+          </h1>
+        </div>
+        <div className="flex w-full md:gap-30 items-center justify-center">
           <div className="flex flex-col items-center">
             <span className="inline-flex items-center gap-2 text-3xl text-white md:text-7xl">
               <CountUp
@@ -158,37 +168,61 @@ export default function StickyScroll() {
                 separator=","
                 direction="up"
                 duration={1}
-                className="count-up-text text-white text-3xl md:text-7xl"
+                className="count-up-text text-white text-3xl md:text-9xl"
               />
               +
             </span>
-            <h1 className="text-white">HRs for Mock Placements</h1>
+            <h1 className="text-white text-center">HRs</h1>
           </div>
           <div className="flex flex-col items-center">
             <span className="inline-flex items-center gap-2 text-3xl text-white md:text-7xl">
               <CountUp
                 from={0}
-                to={80}
+                to={3000}
                 separator=","
                 direction="up"
                 duration={1}
-                className="count-up-text text-white text-3xl md:text-7xl"
+                className="count-up-text text-white text-3xl md:text-9xl"
               />
               +
             </span>
-            <h1 className="text-white">HRs for Mock Placements</h1>
+            <h1 className="text-white text-center">Students interviewed</h1>
           </div>
+        </div>
+        <div className="flex justify-center text-center">
+          <h1 className="text-white text-4xl text-center md:text-7xl">
+            For Mock Placements
+          </h1>
         </div>
       </div>
 
       {/* Red Section */}
-      <div className="h-screen w-full flex justify-center items-center bg-red-700 sticky top-0 z-40">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">
-            Gonna add contact us page here
-          </h1>
-          <p className="text-red-100">Final section!</p>
+      <div className="h-screen w-full flex flex-col justify-center items-center bg-black sticky top-0 z-40 gap-7 ">
+        <div className="justify-center flex items-center w-full">
+          <FaPhone className="text-white h-10 w-10" />
         </div>
+        <span className="md:inline-flex items-center gap-2 text-3xl text-white md:text-7xl w-full">
+          <div className="justify-center flex items-center w-full mt-30">
+            <h1 className="text-white text-center md:text-9xl">CONTACT US</h1>
+          </div>
+          <div className="justify-center items-center w-full">
+            <BlockInTextCard
+              tag="/ Support"
+              text={
+                <>
+                  <strong>Have questions?</strong> We love to help! Contact
+                  support for any issue you may face.
+                </>
+              }
+              examples={[
+                "Does your product work for SMBs?",
+                "Can I pause my membership without losing my data?",
+                "How does seat based pricing work?",
+                "What's the meaning of life?",
+              ]}
+            />
+          </div>
+        </span>
       </div>
 
       {/* Extra space to allow scrolling past the last section */}
