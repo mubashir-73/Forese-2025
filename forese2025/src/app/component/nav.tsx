@@ -15,7 +15,9 @@ export default function Nav() {
           <Link href="/Coderforum">
             <p>CODERS FORUM</p>
           </Link>
-          <p>EVENTS</p>
+          <Link href="/Event">
+            <p>EVENTS</p>
+          </Link>
           <Link href="/Team">
             <p>TEAM</p>
           </Link>
