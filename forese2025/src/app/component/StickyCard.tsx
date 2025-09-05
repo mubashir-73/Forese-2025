@@ -1,6 +1,5 @@
 "use client";
 import Beams from "../../components/Beams";
-import Link from "next/link";
 import {
   FaPhone,
   FaEnvelope,
@@ -21,7 +20,7 @@ import { GiAwareness } from "react-icons/gi";
 import { IoIosTrendingUp } from "react-icons/io";
 import { AiOutlineRise } from "react-icons/ai";
 import RotatingText from "../../components/ui/RotatingText";
-import BlockInTextCard from "./Blocktext";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function StickyScroll() {
@@ -281,7 +280,7 @@ export default function StickyScroll() {
                 scale: 1.1,
               }}
               transition={{ duration: 0.5 }}
-              className="p-4 rounded-full bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm border border-white/10"
+              className="p-4 rounded-full bg-gradient-to-r from-zinc-600/20 to-grey-600/20 backdrop-blur-sm border border-white/10"
             >
               <FaPhoneAlt className="text-white h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 drop-shadow-2xl" />
             </motion.div>
@@ -296,7 +295,7 @@ export default function StickyScroll() {
               CONTACT US
             </h1>
             <motion.div
-              className="h-1 w-32 sm:w-48 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"
+              className="h-1 w-32 sm:w-48 bg-gradient-to-r from-zinc-500 to-grey-900 mx-auto mt-4 rounded-full"
               initial={{ width: 0 }}
               whileInView={{ width: "auto" }}
               transition={{ duration: 1, delay: 0.5 }}
@@ -315,7 +314,7 @@ export default function StickyScroll() {
             >
               <FaEnvelope className="text-blue-400 h-8 w-8 mx-auto mb-4" />
               <h3 className="text-white text-lg font-semibold mb-2">Email</h3>
-              <p className="text-gray-300 text-sm">contact@forese.edu</p>
+              <p className="text-gray-300 text-sm">forese@svce.ac.in</p>
             </motion.div>
 
             <motion.div
@@ -325,7 +324,7 @@ export default function StickyScroll() {
             >
               <FaPhone className="text-green-400 h-8 w-8 mx-auto mb-4" />
               <h3 className="text-white text-lg font-semibold mb-2">Phone</h3>
-              <p className="text-gray-300 text-sm">+91 9876543210</p>
+              <p className="text-gray-300 text-sm">+91 879987969</p>
             </motion.div>
 
             <motion.div
@@ -337,7 +336,9 @@ export default function StickyScroll() {
               <h3 className="text-white text-lg font-semibold mb-2">
                 Location
               </h3>
-              <p className="text-gray-300 text-sm">College Campus</p>
+              <p className="text-gray-300 text-sm">
+                Sri Venkateswara College of Engineering
+              </p>
             </motion.div>
           </motion.div>
 
@@ -446,7 +447,7 @@ export default function StickyScroll() {
                 <div className="flex items-center space-x-3">
                   <FaEnvelope className="text-blue-400 h-4 w-4 flex-shrink-0" />
                   <span className="text-gray-300 text-sm">
-                    contact@forese.edu
+                    forese@svce.ac.in
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -456,9 +457,9 @@ export default function StickyScroll() {
                 <div className="flex items-start space-x-3">
                   <FaMapMarkerAlt className="text-red-400 h-4 w-4 flex-shrink-0 mt-1" />
                   <span className="text-gray-300 text-sm">
-                    Engineering College Campus
+                    Sri Venkateswara College of Engineering
                     <br />
-                    Delhi, India
+                    Sriperumbudur, Tamil Nadu, India
                   </span>
                 </div>
               </div>
