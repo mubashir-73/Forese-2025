@@ -12,7 +12,7 @@ export default function Hero() {
       <div className="h-screen flex flex-col font-hanken text-3xl md:text-6xl lg:text-8xl justify-center items-center">
         <span className="inline-flex">
           <h1
-            className="text-white"
+            className="text-white text-center"
             style={{ fontFamily: "var(--font-hanken-grotesk)" }}
           >
             FOR{" "}
@@ -34,13 +34,13 @@ export default function Hero() {
           text={[
             "A student-run club",
             "Working Closely with the Placement Cell",
-            "Of Sri Venkateswara College of Engineering",
+            "of Sri Venkateswara College of Engineering",
           ]}
           typingSpeed={75}
           pauseDuration={1500}
           showCursor={true}
           cursorCharacter="|"
-          className="text-white text-xl mt-5"
+          className="text-white text-xl mt-5 text-center"
         />
         <Link href="/Team">
           <button className="bg-white text-xl font-medium text-blue-800 rounded-md px-4 py-2 mt-10 hover:bg-blue-800 hover:text-white tracking-tight transition-colors duration-200">

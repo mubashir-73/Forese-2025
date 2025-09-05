@@ -29,11 +29,44 @@ import {
 } from "react-icons/md";
 import RotatingText from "../../components/ui/RotatingText";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 export default function StickyScroll() {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
+
+  // Refs for each section
+  const section1Ref = useRef<HTMLDivElement>(null);
+  const section2Ref = useRef<HTMLDivElement>(null);
+  const section3Ref = useRef<HTMLDivElement>(null);
+  const section4Ref = useRef<HTMLDivElement>(null);
+
+  // Scroll progress for each section
+  const { scrollYProgress: scrollYProgress1 } = useScroll({
+    target: section1Ref,
+    offset: ["start start", "end start"],
+  });
+
+  const { scrollYProgress: scrollYProgress2 } = useScroll({
+    target: section2Ref,
+    offset: ["start start", "end start"],
+  });
+
+  const { scrollYProgress: scrollYProgress3 } = useScroll({
+    target: section3Ref,
+    offset: ["start start", "end start"],
+  });
+
+  const { scrollYProgress: scrollYProgress4 } = useScroll({
+    target: section4Ref,
+    offset: ["start start", "end start"],
+  });
+
+  // Transform scroll progress to Y movement (parallax effect)
+  const y1 = useTransform(scrollYProgress1, [0, 1], ["0%", "-50%"]);
+  const y2 = useTransform(scrollYProgress2, [0, 1], ["0%", "-50%"]);
+  const y3 = useTransform(scrollYProgress3, [0, 1], ["0%", "-50%"]);
+  const y4 = useTransform(scrollYProgress4, [0, 1], ["0%", "-50%"]);
 
   const eventData = [
     {
@@ -189,6 +222,8 @@ export default function StickyScroll() {
     <>
       {/* First Section - Enhanced with animations */}
       <motion.div
+        ref={section1Ref}
+        style={{ y: y1 }}
         className="h-screen w-full flex-col justify-center items-center bg-blue-900 sticky top-0 z-10 pt-30 gap-7"
         initial="hidden"
         whileInView="visible"
@@ -258,6 +293,8 @@ export default function StickyScroll() {
 
       {/* Second Section - Enhanced with icon carousel */}
       <motion.div
+        ref={section2Ref}
+        style={{ y: y2 }}
         className="flex h-screen w-full flex-col justify-center items-center bg-[#0d5c63] sticky top-0 z-20 pt-30 gap-7"
         initial="hidden"
         whileInView="visible"
@@ -364,6 +401,8 @@ export default function StickyScroll() {
 
       {/* Third Section - Enhanced statistics */}
       <motion.div
+        ref={section3Ref}
+        style={{ y: y3 }}
         className="h-screen w-full flex flex-col justify-center items-center bg-[#0b3954] sticky top-0 pt-30 z-30 gap-10"
         initial="hidden"
         whileInView="visible"
@@ -469,6 +508,8 @@ export default function StickyScroll() {
 
       {/* Enhanced Contact Section - Keep as is */}
       <motion.div
+        ref={section4Ref}
+        style={{ y: y4 }}
         className="min-h-screen w-full flex flex-col justify-center items-center bg-gradient-to-br from-black via-gray-900 to-black sticky top-0 z-40 px-4 sm:px-6 lg:px-8 py-16 overflow-hidden relative"
         initial="hidden"
         whileInView="visible"
@@ -711,8 +752,6 @@ export default function StickyScroll() {
             </div>
           </motion.div>
         </div>
-
-        {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10" />
         </div>
