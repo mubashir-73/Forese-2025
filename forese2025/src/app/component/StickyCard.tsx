@@ -19,11 +19,53 @@ import { FaHandshake } from "react-icons/fa";
 import { GiAwareness } from "react-icons/gi";
 import { IoIosTrendingUp } from "react-icons/io";
 import { AiOutlineRise } from "react-icons/ai";
+import {
+  MdWork,
+  MdSchool,
+  MdPeople,
+  MdQuiz,
+  MdForum,
+  MdCode,
+} from "react-icons/md";
 import RotatingText from "../../components/ui/RotatingText";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function StickyScroll() {
+  const [currentEventIndex, setCurrentEventIndex] = useState(0);
+
+  const eventData = [
+    {
+      text: "Mock Placements",
+      icon: <MdWork className="h-12 w-12 text-white" />,
+    },
+    {
+      text: "Foreign Education Fairs",
+      icon: <MdSchool className="h-12 w-12 text-white" />,
+    },
+    {
+      text: "Soft Skills Workshops",
+      icon: <MdPeople className="h-12 w-12 text-white" />,
+    },
+    {
+      text: "Aptitude Tests",
+      icon: <MdQuiz className="h-12 w-12 text-white" />,
+    },
+    {
+      text: "Group Discussions",
+      icon: <MdForum className="h-12 w-12 text-white" />,
+    },
+    { text: "Hackathons", icon: <MdCode className="h-12 w-12 text-white" /> },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentEventIndex((prev) => (prev + 1) % eventData.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   const items: Array<{
     title: string;
     description: string;
@@ -66,7 +108,7 @@ export default function StickyScroll() {
     },
   ];
 
-  // Animation variants for the new sections
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -105,22 +147,86 @@ export default function StickyScroll() {
     },
   };
 
+  const slideInFromLeft = {
+    hidden: { x: -100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const slideInFromRight = {
+    hidden: { x: 100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const bounceVariant = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        damping: 12,
+        stiffness: 200,
+        duration: 0.8,
+      },
+    },
+  };
+
   return (
     <>
-      {/* White Section */}
-      <div className="h-screen w-full flex-col justify-center items-center bg-blue-900 sticky top-0 z-10 pt-30 gap-7">
-        <div className=" flex justify-center ">
-          <Image src="/FOR.png" alt="FOR" width={100} height={85} />
-        </div>
-        <div className="flex text-center justify-center items-center mt-3">
-          <h1
-            className="text-3xl md:text-7xl  text-white mb-4 font-semibold"
+      {/* First Section - Enhanced with animations */}
+      <motion.div
+        className="h-screen w-full flex-col justify-center items-center bg-blue-900 sticky top-0 z-10 pt-30 gap-7"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+      >
+        <motion.div className="flex justify-center" variants={scaleUpVariant}>
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+              rotate: [0, -5, 5, 0],
+              transition: { duration: 0.5 },
+            }}
+          >
+            <Image src="/FOR.png" alt="FOR" width={100} height={85} />
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="flex text-center justify-center items-center mt-3"
+          variants={itemVariants}
+        >
+          <motion.h1
+            className="text-3xl md:text-7xl text-white mb-4 font-semibold"
             style={{ fontFamily: "var(--font-poppins)" }}
+            whileInView={{
+              scale: [0.9, 1.02, 1],
+              transition: { duration: 1.2 },
+            }}
           >
             Shaping Futures, Beyond the Classroom
-          </h1>
-        </div>
-        <div className="flex text-center text-xl justify-center items-center mt-3 md:px-30">
+          </motion.h1>
+        </motion.div>
+
+        <motion.div
+          className="flex text-center text-xl justify-center items-center mt-3 md:px-30"
+          variants={slideInFromLeft}
+        >
           <p className="text-white">
             FORESE (Forum for Economic Studies by Engineers) is a student-run
             club that connects education with real-world opportunities. It helps
@@ -128,10 +234,14 @@ export default function StickyScroll() {
             workshops, events, and practical learning. FORESE also focuses on
             building important skills like teamwork, communication, and
             problem-solving, creating a space where students can grow and move
-            confidently towards their goals.{" "}
+            confidently towards their goals.
           </p>
-        </div>
-        <div className="flex justify-center mt-5">
+        </motion.div>
+
+        <motion.div
+          className="flex justify-center mt-5"
+          variants={bounceVariant}
+        >
           <div style={{ height: "600px", position: "relative" }}>
             <Carousel
               baseWidth={300}
@@ -142,21 +252,59 @@ export default function StickyScroll() {
               round={true}
               items={items}
             />
-          </div>{" "}
-        </div>
-      </div>
-
-      {/* Black Section */}
-      <div className=" flex h-screen w-full flex-col justify-center items-center bg-[#0d5c63] sticky top-0 z-20 pt-30 gap-7">
-        <div className=" flex justify-center items-center">
-          <div className=" text-sm inline-flex text-white mb-4 border border-white px-3 py-1 rounded-lg tracking-tight w-[20px];">
-            {" "}
-            What we do?
           </div>
-        </div>
-        <div
-          className="flex justify-center items-center font-semibold items-center text-white text-3xl  md:text-7xl"
+        </motion.div>
+      </motion.div>
+
+      {/* Second Section - Enhanced with icon carousel */}
+      <motion.div
+        className="flex h-screen w-full flex-col justify-center items-center bg-[#0d5c63] sticky top-0 z-20 pt-30 gap-7"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+      >
+        <motion.div
+          className="flex justify-center items-center"
+          variants={slideInFromRight}
+        >
+          <motion.div
+            className="text-sm inline-flex text-white mb-4 border border-white px-3 py-1 rounded-lg tracking-tight"
+            whileHover={{
+              scale: 1.05,
+              borderColor: "#ffffff80",
+            }}
+          >
+            What we do?
+          </motion.div>
+        </motion.div>
+
+        {/* Animated Icon Carousel */}
+        <motion.div
+          className="flex justify-center items-center mb-6"
+          variants={scaleUpVariant}
+        >
+          <motion.div
+            key={currentEventIndex}
+            initial={{ scale: 0, rotate: -180, opacity: 0 }}
+            animate={{ scale: 1, rotate: 0, opacity: 1 }}
+            exit={{ scale: 0, rotate: 180, opacity: 0 }}
+            transition={{
+              type: "spring",
+              damping: 15,
+              stiffness: 300,
+              duration: 0.6,
+            }}
+            className="p-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
+          >
+            {eventData[currentEventIndex].icon}
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="flex justify-center items-center font-semibold items-center text-white text-3xl md:text-7xl"
           style={{ fontFamily: "var(--font-poppins)" }}
+          variants={itemVariants}
         >
           <div>
             <span className="md:inline-flex items-center gap-2 text-[#fffffa] text-center">
@@ -182,35 +330,89 @@ export default function StickyScroll() {
               />
             </span>
           </div>
-        </div>
-        <div className="flex justify-center items-center text-white text-xl mt-10">
+        </motion.div>
+
+        <motion.div
+          className="flex justify-center items-center text-white text-xl mt-10"
+          variants={slideInFromLeft}
+        >
           <p className="text-center">
             Want to know more about the events we organise? Check out our events
             page!
           </p>
-        </div>
-        <div className="flex justify-center mt-5">
+        </motion.div>
+
+        <motion.div
+          className="flex justify-center mt-5"
+          variants={bounceVariant}
+        >
           <Link href="/Event">
-            <button className="bg-green-950 text-green-400 border border-green-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
+            <motion.button
+              className="bg-green-950 text-green-400 border border-green-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+              whileHover={{
+                scale: 1.05,
+                y: -2,
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
               <span className="bg-green-400 shadow-green-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
               Go to Events
-            </button>{" "}
+            </motion.button>
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      {/* Blue Section */}
-      <div className="h-screen w-full flex flex-col justify-center items-center bg-[#0b3954] sticky top-0 pt-30 z-30 gap-10">
-        <div className="flex justify-center text-center">
-          <AiOutlineRise className="text-white h-30 w-30" />
-        </div>
-        <div className="flex justify-center text-center">
-          <h1 className="text-white text-4xl text-center md:text-7xl">
+      {/* Third Section - Enhanced statistics */}
+      <motion.div
+        className="h-screen w-full flex flex-col justify-center items-center bg-[#0b3954] sticky top-0 pt-30 z-30 gap-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+      >
+        <motion.div
+          className="flex justify-center text-center"
+          variants={scaleUpVariant}
+        >
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+              rotate: [0, 5, -5, 0],
+              transition: { duration: 0.6 },
+            }}
+            className="p-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
+          >
+            <AiOutlineRise className="text-white h-20 w-20" />
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="flex justify-center text-center"
+          variants={itemVariants}
+        >
+          <motion.h1
+            className="text-white text-4xl text-center md:text-7xl"
+            whileInView={{
+              scale: [0.9, 1.05, 1],
+              transition: { duration: 1 },
+            }}
+          >
             Largest HR–student engagement ever
-          </h1>
-        </div>
-        <div className="flex w-full md:gap-30 items-center justify-center">
-          <div className="flex flex-col items-center">
+          </motion.h1>
+        </motion.div>
+
+        <motion.div
+          className="flex w-full md:gap-30 items-center justify-center"
+          variants={containerVariants}
+        >
+          <motion.div
+            className="flex flex-col items-center"
+            variants={bounceVariant}
+            whileHover={{
+              scale: 1.1,
+              transition: { type: "spring", stiffness: 300 },
+            }}
+          >
             <span className="inline-flex items-center gap-2 text-3xl text-white md:text-7xl">
               <CountUp
                 from={0}
@@ -223,8 +425,16 @@ export default function StickyScroll() {
               +
             </span>
             <h1 className="text-white text-center">HRs</h1>
-          </div>
-          <div className="flex flex-col items-center">
+          </motion.div>
+
+          <motion.div
+            className="flex flex-col items-center"
+            variants={bounceVariant}
+            whileHover={{
+              scale: 1.1,
+              transition: { type: "spring", stiffness: 300 },
+            }}
+          >
             <span className="inline-flex items-center gap-2 text-3xl text-white md:text-7xl">
               <CountUp
                 from={0}
@@ -237,16 +447,27 @@ export default function StickyScroll() {
               +
             </span>
             <h1 className="text-white text-center">Students interviewed</h1>
-          </div>
-        </div>
-        <div className="flex justify-center text-center">
-          <h1 className="text-white text-4xl text-center md:text-7xl">
-            For Mock Placements
-          </h1>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
 
-      {/* Enhanced Contact Section */}
+        <motion.div
+          className="flex justify-center text-center"
+          variants={slideInFromRight}
+        >
+          <motion.h1
+            className="text-white text-4xl text-center md:text-7xl"
+            whileInView={{
+              opacity: [0, 1],
+              y: [30, 0],
+              transition: { duration: 0.8, delay: 0.5 },
+            }}
+          >
+            For Mock Placements
+          </motion.h1>
+        </motion.div>
+      </motion.div>
+
+      {/* Enhanced Contact Section - Keep as is */}
       <motion.div
         className="min-h-screen w-full flex flex-col justify-center items-center bg-gradient-to-br from-black via-gray-900 to-black sticky top-0 z-40 px-4 sm:px-6 lg:px-8 py-16 overflow-hidden relative"
         initial="hidden"
@@ -341,12 +562,10 @@ export default function StickyScroll() {
               </p>
             </motion.div>
           </motion.div>
-
-          {/* Block In Text Card */}
         </div>
       </motion.div>
 
-      {/* Enhanced Footer Section */}
+      {/* Enhanced Footer Section - Keep as is */}
       <footer className="bg-gray-900 text-white relative z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <motion.div
