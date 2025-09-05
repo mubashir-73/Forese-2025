@@ -1,5 +1,16 @@
+"use client";
+import Beams from "../../components/Beams";
 import Link from "next/link";
-import { FaPhone } from "react-icons/fa6";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+  FaFacebook,
+} from "react-icons/fa";
+import { FaPhone as FaPhoneAlt } from "react-icons/fa6";
 import CountUp from "../../components/ui/CountUp";
 import Image from "next/image";
 import Carousel from "../../components/ui/Carousel";
@@ -11,6 +22,7 @@ import { IoIosTrendingUp } from "react-icons/io";
 import { AiOutlineRise } from "react-icons/ai";
 import RotatingText from "../../components/ui/RotatingText";
 import BlockInTextCard from "./Blocktext";
+import { motion } from "framer-motion";
 
 export default function StickyScroll() {
   const items: Array<{
@@ -54,6 +66,45 @@ export default function StickyScroll() {
       icon: <IoIosTrendingUp className="h-[16px] w-[16px] text-white" />,
     },
   ];
+
+  // Animation variants for the new sections
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
+  const scaleUpVariant = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
 
   return (
     <>
@@ -196,44 +247,256 @@ export default function StickyScroll() {
         </div>
       </div>
 
-      {/* Red Section */}
-      <div className="h-screen w-full flex flex-col justify-center items-center bg-black sticky top-0 z-40 gap-7 ">
-        <div className="justify-center flex items-center w-full">
-          <FaPhone className="text-white h-10 w-10" />
+      {/* Enhanced Contact Section */}
+      <motion.div
+        className="min-h-screen w-full flex flex-col justify-center items-center bg-gradient-to-br from-black via-gray-900 to-black sticky top-0 z-40 px-4 sm:px-6 lg:px-8 py-16 overflow-hidden relative"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+      >
+        {/* Background decorations */}
+        <div
+          className="absolute inset-0"
+          style={{ width: "100%", height: "100%px", position: "absolute" }}
+        >
+          <Beams
+            beamWidth={2}
+            beamHeight={15}
+            beamNumber={12}
+            lightColor="#ffffff"
+            speed={2}
+            noiseIntensity={1.75}
+            scale={0.2}
+            rotation={0}
+          />
         </div>
-        <span className="md:inline-flex items-center gap-2 text-3xl text-white md:text-7xl w-full">
-          <div className="justify-center flex items-center w-full mt-30">
-            <h1 className="text-white text-center md:text-9xl">CONTACT US</h1>
-          </div>
-          <div className="justify-center items-center w-full">
-            <BlockInTextCard
-              tag="/ Support"
-              text={
-                <>
-                  <strong>Have questions?</strong> We love to help! Contact
-                  support for any issue you may face.
-                </>
-              }
-              examples={[
-                "Does your product work for SMBs?",
-                "Can I pause my membership without losing my data?",
-                "How does seat based pricing work?",
-                "What's the meaning of life?",
-              ]}
-            />
-          </div>
-        </span>
-      </div>
 
-      {/* Extra space to allow scrolling past the last section */}
-      <div className="h-screen w-full bg-gray-100 flex justify-center items-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">End</h1>
-          <p className="text-gray-600">
-            Scroll back up to see the sticky effect
-          </p>
+        <div className="w-full max-w-6xl mx-auto flex flex-col items-center space-y-8 sm:space-y-12 lg:space-y-16 relative z-10">
+          {/* Phone Icon */}
+          <motion.div className="flex justify-center" variants={scaleUpVariant}>
+            <motion.div
+              whileHover={{
+                rotate: [0, -10, 10, -10, 0],
+                scale: 1.1,
+              }}
+              transition={{ duration: 0.5 }}
+              className="p-4 rounded-full bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm border border-white/10"
+            >
+              <FaPhoneAlt className="text-white h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 drop-shadow-2xl" />
+            </motion.div>
+          </motion.div>
+
+          {/* Contact Us Title */}
+          <motion.div className="text-center" variants={itemVariants}>
+            <h1
+              className="text-white text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold tracking-wider drop-shadow-2xl"
+              style={{ fontFamily: "var(--font-poppins)" }}
+            >
+              CONTACT US
+            </h1>
+            <motion.div
+              className="h-1 w-32 sm:w-48 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"
+              initial={{ width: 0 }}
+              whileInView={{ width: "auto" }}
+              transition={{ duration: 1, delay: 0.5 }}
+            />
+          </motion.div>
+
+          {/* Contact Info Cards */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full max-w-4xl"
+            variants={containerVariants}
+          >
+            <motion.div
+              className="text-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <FaEnvelope className="text-blue-400 h-8 w-8 mx-auto mb-4" />
+              <h3 className="text-white text-lg font-semibold mb-2">Email</h3>
+              <p className="text-gray-300 text-sm">contact@forese.edu</p>
+            </motion.div>
+
+            <motion.div
+              className="text-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <FaPhone className="text-green-400 h-8 w-8 mx-auto mb-4" />
+              <h3 className="text-white text-lg font-semibold mb-2">Phone</h3>
+              <p className="text-gray-300 text-sm">+91 9876543210</p>
+            </motion.div>
+
+            <motion.div
+              className="text-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <FaMapMarkerAlt className="text-red-400 h-8 w-8 mx-auto mb-4" />
+              <h3 className="text-white text-lg font-semibold mb-2">
+                Location
+              </h3>
+              <p className="text-gray-300 text-sm">College Campus</p>
+            </motion.div>
+          </motion.div>
+
+          {/* Block In Text Card */}
         </div>
-      </div>
+      </motion.div>
+
+      {/* Enhanced Footer Section */}
+      <footer className="bg-gray-900 text-white relative z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            {/* FORESE Info */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                FORESE
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                Forum for Economic Studies by Engineers - Shaping futures beyond
+                the classroom through practical learning and real-world
+                opportunities.
+              </p>
+              <div className="flex space-x-4">
+                <motion.a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FaLinkedin className="h-5 w-5" />
+                </motion.a>
+                <motion.a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FaTwitter className="h-5 w-5" />
+                </motion.a>
+                <motion.a
+                  href="#"
+                  className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FaInstagram className="h-5 w-5" />
+                </motion.a>
+                <motion.a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-600 transition-colors duration-300"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FaFacebook className="h-5 w-5" />
+                </motion.a>
+              </div>
+            </motion.div>
+
+            {/* Quick Links */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                {["About Us", "Events", "Team", "Gallery"].map(
+                  (link, index) => (
+                    <motion.li key={link}>
+                      <Link
+                        href={`/${link.toLowerCase().replace(" ", "-")}`}
+                        className="text-gray-300 hover:text-white transition-colors duration-300 text-sm block py-1"
+                      >
+                        {link}
+                      </Link>
+                    </motion.li>
+                  ),
+                )}
+              </ul>
+            </motion.div>
+
+            {/* Services */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-lg font-semibold mb-4">What We Do</h3>
+              <ul className="space-y-2">
+                {[
+                  "Mock Placements",
+                  "Workshops",
+                  "Career Guidance",
+                  "Skill Development",
+                ].map((service, index) => (
+                  <motion.li key={service}>
+                    <span className="text-gray-300 text-sm block py-1">
+                      {service}
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Contact Info */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-lg font-semibold mb-4">Get In Touch</h3>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <FaEnvelope className="text-blue-400 h-4 w-4 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">
+                    contact@forese.edu
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <FaPhone className="text-green-400 h-4 w-4 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">+91 9876543210</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <FaMapMarkerAlt className="text-red-400 h-4 w-4 flex-shrink-0 mt-1" />
+                  <span className="text-gray-300 text-sm">
+                    Engineering College Campus
+                    <br />
+                    Delhi, India
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Bottom Bar */}
+          <motion.div
+            className="border-t border-gray-700 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="text-gray-400 text-sm mb-4 sm:mb-0">
+              © 2025 FORESE. All rights reserved.
+            </div>
+            <div className="flex space-x-6">
+              <Link
+                href="/privacy"
+                className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms"
+                className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
+              >
+                Terms of Service
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10" />
+        </div>
+      </footer>
     </>
   );
 }

@@ -13,7 +13,6 @@ export default function Home() {
       <div className="relative inset-0 z-10 min-h-screen h-full w-screen">
         <Hero />
         <About />
-        <Gallery />
       </div>
     </>
   );

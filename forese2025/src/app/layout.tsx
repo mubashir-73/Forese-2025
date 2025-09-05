@@ -5,6 +5,7 @@ import { Hanken_Grotesk } from "next/font/google";
 import Nav from "./component/nav";
 import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
+import ClientWrapper from "./component/ClientWrapper"; // Adjust path as needed
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,8 +16,8 @@ const poppins = Poppins({
 
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // specify weights you need
-  variable: "--font-hanken-grotesk", // CSS variable name
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-hanken-grotesk",
 });
 
 const geistSans = Geist({
@@ -44,8 +45,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${hankenGrotesk.variable} ${poppins.variable} antialiased overflow-x-hidden`}
       >
-        <Nav />
-        {children}
+        <ClientWrapper>
+          <Nav />
+          {children}
+        </ClientWrapper>
       </body>
     </html>
   );
