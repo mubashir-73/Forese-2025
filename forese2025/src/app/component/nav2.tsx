@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import StaggeredMenu from "../../components/ui/StaggeredMenu";
+import Button from "../../components/ui/button";
 
 export default function Nav() {
   const navLinks = [
@@ -99,16 +100,18 @@ export default function Nav() {
               </motion.p>
             </Link>
           ))}
-          <motion.button
-            className="bg-white text-black rounded-md px-4 py-2 font-light hover:bg-gray-100 transition-all duration-300"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 8px 20px rgba(255, 255, 255, 0.2)",
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            SUBMIT RESUME
-          </motion.button>
+          <Link href="/Resume">
+            <motion.button
+              className="bg-white text-black rounded-md px-4 py-2 font-light hover:bg-gray-100 transition-all duration-300"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 8px 20px rgba(255, 255, 255, 0.2)",
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              SUBMIT RESUME
+            </motion.button>
+          </Link>
         </div>
       </nav>
     </>
