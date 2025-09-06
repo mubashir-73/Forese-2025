@@ -455,14 +455,23 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             className="sm-logo flex items-center select-none pointer-events-auto"
             aria-label="Logo"
           >
-            <Image
-              src={logoUrl || "/src/assets/logos/reactbits-gh-white.svg"}
-              alt="Logo"
-              className="sm-logo-img block h-15 w-auto object-contain"
-              draggable={false}
-              width={100}
-              height={85}
-            />
+            <Link
+              href="/"
+              onClick={() => {
+                if (open) {
+                  toggleMenu();
+                }
+              }}
+            >
+              <Image
+                src={logoUrl || "/src/assets/logos/reactbits-gh-white.svg"}
+                alt="Logo"
+                className="sm-logo-img block h-15 w-auto object-contain"
+                draggable={false}
+                width={100}
+                height={85}
+              />
+            </Link>
           </div>
 
           <button
@@ -608,7 +617,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
-.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; z-index: 10; }
+.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 7em 2em 2em 2em; overflow-y: auto; z-index: 10; }
 .sm-scope [data-open] .staggered-menu-panel { pointer-events: auto; }
 .sm-scope .staggered-menu-panel:not([aria-hidden="false"]) { pointer-events: none; }
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }

@@ -91,6 +91,12 @@ export default function Nav() {
 
   const menuItems = [
     {
+      label: "HOME",
+      ariaLabel: "Visit our Home Page",
+      link: "/",
+    },
+
+    {
       label: "CODERS' FORUM",
       ariaLabel: "Go to Coders'forum",
       link: "/Coderforum",
@@ -108,11 +114,9 @@ export default function Nav() {
   ];
 
   const socialItems = [
-    { label: "Twitter", link: "https://twitter.com" },
+    { label: "GitHub", link: "https://github.com/ForeseTech" },
 
-    { label: "GitHub", link: "https://github.com" },
-
-    { label: "LinkedIn", link: "https://linkedin.com" },
+    { label: "LinkedIn", link: "https://www.linkedin.com/company/forese/" },
   ];
 
   return (
@@ -130,7 +134,7 @@ export default function Nav() {
           changeMenuColorOnOpen={true}
           colors={["#B19EEF", "#5227FF"]}
           logoUrl="/FOR.png"
-          accentColor="#ff6b6b"
+          accentColor="#004aad"
           onMenuOpen={() => console.log("Menu opened")}
           onMenuClose={() => console.log("Menu closed")}
         />

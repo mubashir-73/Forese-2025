@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "../component/Footer";
 import { useState } from "react";
 import {
   coreMembers,
@@ -144,49 +145,52 @@ export default function Team() {
   const [active, setActive] = useState<TabKey>("core");
 
   return (
-    <div className="bg-black min-h-screen flex flex-col px-4 md:px-8 pt-30">
-      <div className="pt-16 pb-8 justify-center flex w-full">
-        <h1 className="text-4xl md:text-5xl text-white font-bold tracking-tight">
-          Our Team
-        </h1>
-      </div>
+    <>
+      <div className="bg-black min-h-screen flex flex-col px-4 md:px-8 pt-30">
+        <div className="pt-16 pb-8 justify-center flex w-full">
+          <h1 className="text-4xl md:text-5xl text-white font-bold tracking-tight">
+            Our Team
+          </h1>
+        </div>
 
-      <PillNav active={active} onChange={setActive} />
+        <PillNav active={active} onChange={setActive} />
 
-      <div className="mt-10">
-        {active === "core" && (
-          <div style={{ height: "100%", position: "relative" }}>
-            <ChromaGrid
-              items={transformCoreMembers(coreMembers)}
-              radius={350}
-              damping={0.4}
-              fadeOut={0.7}
-              ease="power3.out"
-              className="w-full h-full"
-            />
-          </div>
-        )}
-
-        {active === "senior" && (
-          <div className="transition-all duration-500 ease-out">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {seniorMembers.map((m) => (
-                <SpotlightCard key={m.id} title={m.name} subtitle={m.role} />
-              ))}
+        <div className="mt-10">
+          {active === "core" && (
+            <div style={{ height: "100%", position: "relative" }}>
+              <ChromaGrid
+                items={transformCoreMembers(coreMembers)}
+                radius={350}
+                damping={0.4}
+                fadeOut={0.7}
+                ease="power3.out"
+                className="w-full h-full"
+              />
             </div>
-          </div>
-        )}
+          )}
 
-        {active === "members" && (
-          <div className="transition-all duration-500 ease-out">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {members.map((m) => (
-                <SpotlightCard key={m.id} title={m.name} subtitle={m.role} />
-              ))}
+          {active === "senior" && (
+            <div className="transition-all duration-500 ease-out">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                {seniorMembers.map((m) => (
+                  <SpotlightCard key={m.id} title={m.name} subtitle={m.role} />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+
+          {active === "members" && (
+            <div className="transition-all duration-500 ease-out">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                {members.map((m) => (
+                  <SpotlightCard key={m.id} title={m.name} subtitle={m.role} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
