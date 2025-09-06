@@ -2,11 +2,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-
+import Link from "next/link";
 interface EventItem {
   title: string;
   description: string;
   url: string;
+  link: string;
 }
 
 export default function Event() {
@@ -18,24 +19,36 @@ export default function Event() {
       description:
         "Learn about our annual flagship event, that connects students with HRs.",
       url: "/Forese.JPG",
+      link: "/MockPlacements",
     },
+    {
+      title: "Group Discussion",
+      description:
+        "Group Discussion is a great way to learn and grow your communication skills.",
+      url: "/bentogdimg1.jpg",
+      link: "/GroupDiscussion",
+    },
+
     {
       title: "Soft Skills Workshops",
       description:
         "Join our workshops and training sessions to enhance your professional capabilities.",
       url: "/Seminar.JPG",
+      link: "/Seminar",
     },
     {
       title: "Coders' Forum Hakathon",
       description:
         "A hackathon like no other, where students can showcase their skills and collaborate with like-minded peers.",
       url: "/hackathon.JPG",
+      link: "/Hackathon",
     },
     {
       title: "Foreign Education Fairs",
       description:
         "Join us at our annual fairs to learn about various universities and their cultures.",
       url: "/fored.JPG",
+      link: "/ForeignEducationFairs",
     },
   ];
 
@@ -117,16 +130,18 @@ export default function Event() {
             </motion.p>
 
             {/* Call to Action Button */}
-            <motion.button
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white text-[#004aad] font-semibold rounded-full hover:bg-white/90 transition-all duration-300 text-lg shadow-lg"
-            >
-              Learn More
-            </motion.button>
+            <Link href={Item[currentIndex].link}>
+              <motion.button
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-white text-[#004aad] font-semibold rounded-full hover:bg-white/90 transition-all duration-300 text-lg shadow-lg"
+              >
+                Learn More{" "}
+              </motion.button>
+            </Link>
           </motion.div>
         </AnimatePresence>
 
