@@ -1,14 +1,6 @@
 "use client";
 import Beams from "../../components/Beams";
-import {
-  FaPhone,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaLinkedin,
-  FaTwitter,
-  FaInstagram,
-  FaFacebook,
-} from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhone as FaPhoneAlt } from "react-icons/fa6";
 import CountUp from "../../components/ui/CountUp";
 import Image from "next/image";

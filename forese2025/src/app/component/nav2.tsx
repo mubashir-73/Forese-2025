@@ -1,88 +1,10 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { motion } from "framer-motion";
 import StaggeredMenu from "../../components/ui/StaggeredMenu";
 
 export default function Nav() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const menuVariants = {
-    hidden: {
-      scale: 0,
-      opacity: 0,
-    },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        damping: 20,
-        stiffness: 300,
-        duration: 0.5,
-      },
-    },
-    exit: {
-      scale: 0,
-      opacity: 0,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
-
-  const linkVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-    },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1 + 0.2,
-        duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    }),
-    exit: {
-      opacity: 0,
-      y: -50,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
-
-  const buttonVariant = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: 0.6,
-        duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.8,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
-
   const navLinks = [
     { href: "/Coderforum", label: "CODERS' FORUM" },
     { href: "/Event", label: "EVENTS" },
@@ -157,7 +79,7 @@ export default function Nav() {
 
         <div className="flex gap-6 text-white font-light tracking-tight mr-10 items-center">
           {navLinks.map((link, index) => (
-            <Link key={link.href} href={link.href}>
+            <Link key={index} href={link.href}>
               <motion.p
                 className="relative cursor-pointer transition-colors duration-300"
                 whileHover={{
