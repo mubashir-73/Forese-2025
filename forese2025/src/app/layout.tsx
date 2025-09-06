@@ -6,6 +6,7 @@ import Nav from "./component/nav";
 import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
 import ClientWrapper from "./component/ClientWrapper"; // Adjust path as needed
+import Nav2 from "./component/nav2";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -46,7 +47,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${hankenGrotesk.variable} ${poppins.variable} antialiased overflow-x-hidden`}
       >
         <ClientWrapper>
-          <Nav />
+          <Nav2 />
           {children}
         </ClientWrapper>
       </body>
