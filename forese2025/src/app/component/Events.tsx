@@ -19,7 +19,7 @@ export default function Event() {
       description:
         "Learn about our annual flagship event, that connects students with HRs.",
       url: "/Forese.JPG",
-      link: "/MockPlacements",
+      link: "/Event/MockPlacements",
     },
     {
       title: "Group Discussion",
@@ -34,21 +34,28 @@ export default function Event() {
       description:
         "Join our workshops and training sessions to enhance your professional capabilities.",
       url: "/Seminar.JPG",
-      link: "/Seminar",
+      link: "/Event/Seminar",
     },
     {
       title: "Coders' Forum Hakathon",
       description:
         "A hackathon like no other, where students can showcase their skills and collaborate with like-minded peers.",
       url: "/hackathon.JPG",
-      link: "/Hackathon",
+      link: "/Event/Hackathon",
     },
     {
       title: "Foreign Education Fairs",
       description:
         "Join us at our annual fairs to learn about various universities and their cultures.",
       url: "/fored.JPG",
-      link: "/ForeignEducationFairs",
+      link: "/Event/ForeignEducationFairs",
+    },
+    {
+      title: "Aptitude tests",
+      description:
+        "Learn about how we conduct our aptitude tests and how to prepare for them.",
+      url: "/aptitude.JPG",
+      link: "/Event/Aptitude",
     },
   ];
 
@@ -115,6 +122,7 @@ export default function Event() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+              style={{ fontFamily: "var(--font-poppins)" }}
             >
               {Item[currentIndex].title}
             </motion.h1>
