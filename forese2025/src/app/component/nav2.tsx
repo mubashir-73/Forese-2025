@@ -81,7 +81,6 @@ export default function Nav() {
                 className="relative cursor-pointer transition-colors duration-300"
                 whileHover={{
                   scale: 1.05,
-                  color: "#60a5fa",
                 }}
                 whileTap={{ scale: 0.95 }}
               >
